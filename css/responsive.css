@@ -22,6 +22,12 @@
 }
 
 @media (max-width: 560px) {
+  #inactive {
+    width: 100%;
+    padding: 1em;
+    font-size: 0.9em;
+    border-radius: 0.2em;
+  }
   :root {
     --inner-padding: 0.5em;
   }
@@ -32,7 +38,7 @@
    -------------------------------------------------------------------------- */
 @media (max-width: 900px) {
   h2.title {
-    font-size: 2.5em;
+    font-size: 2em;
   }
 
   h3.title {
