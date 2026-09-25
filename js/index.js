@@ -9,6 +9,8 @@
 (function () {
   "use strict";
 
+  var root = document.documentElement;
+
   var prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
