@@ -146,7 +146,7 @@
     });
   }
 
-  if (progressEl || (header && !reduceMotion)) {
+  if (progressEl || (header && !prefersReducedMotion)) {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
   }
