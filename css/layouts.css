@@ -29,6 +29,10 @@
     "header header"
     "toplefto topright"
     "topleftt topright";
+
+    .box-img{
+      height:10em;
+    }
 }
 
 .topleft {
