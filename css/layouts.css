@@ -22,7 +22,7 @@
 .grid {
   display: grid;
   grid-template-columns: 0.4fr 0.4fr;
-  grid-template-rows: 0.5fr;
+  grid-template-rows: 0.7fr;
   grid-template-areas:
     "topleft toprighto"
     "topleft toprightt"

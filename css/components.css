@@ -171,8 +171,12 @@ form {
   }
 }
 
+h1.title {
+  font-size: calc(2.3 * var(--inner-padding));
+}
+
 .title {
-  font-size: calc(3 * var(--inner-padding));
+  font-size: calc(2.8 * var(--inner-padding));
   font-weight: bold;
 }
 
@@ -237,7 +241,7 @@ form {
 }
 
 .setb {
-  height: 45em;
+  height: 49em;
 }
 
 .sets {
