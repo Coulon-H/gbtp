@@ -310,12 +310,21 @@ header {
 /* Photos: a curtain wipe instead of a fade, so the grid of project
    images reveals itself the way a portfolio site would, not a blog */
 [data-animate="wipe"] {
+  overflow: hidden;
   clip-path: inset(0 0 100% 0);
-  transform: scale(1.06);
+  transition: clip-path var(--duration-slow) var(--ease-out-soft);
 }
 
 [data-animate="wipe"].in-view {
-  clip-path: inset(0 0 0% 0);
+  clip-path: inset(0 0 0 0);
+}
+
+[data-animate="wipe"] img {
+  transform: scale(1.06);
+  transition: transform var(--duration-slow) var(--ease-out-soft);
+}
+
+[data-animate="wipe"].in-view img {
   transform: scale(1);
 }
 

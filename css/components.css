@@ -219,6 +219,7 @@ form {
   border-radius: var(--inner-padding);
 
   .box-img {
+    overflow: hidden;
     width: 80%;
     height: auto;
     border-radius: calc(1 * var(--inner-padding));
@@ -233,6 +234,10 @@ form {
   ul {
     padding: 0;
   }
+}
+
+.setb {
+  height: 45em;
 }
 
 .sets {
