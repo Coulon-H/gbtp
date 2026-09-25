@@ -33,24 +33,45 @@
 
 .topleft {
   grid-area: topleft;
+  background-image: url(../img/g2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .topright {
   grid-area: topright;
+   background-image: url(../img/g2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .header {
   grid-area: header;
+   background-image: url(../img/g4.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .tro {
   grid-area: toprighto;
+   background-image: url(../img/g6.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .trt {
   grid-area: toprightt;
+   background-image: url(../img/g8.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .tlo {
   grid-area: toplefto;
+   background-image: url(../img/g9.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .tlt {
   grid-area: topleftt;
+   background-image: url(../img/g7.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* Flex alignment */
