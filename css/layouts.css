@@ -1,0 +1,130 @@
+/* ==========================================================================
+   LAYOUT
+   Structural primitives (.box/.col/.grid) and the single-purpose utility
+   classes that position things. Nothing in this file has a color, a
+   font, or a transition — purely arrangement.
+   ========================================================================== */
+
+.box {
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 1em;
+  width: auto;
+  gap: 0.7em;
+  position: relative;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 0.4fr 0.4fr;
+  grid-template-rows: 0.7fr;
+  grid-template-areas:
+    "topleft toprighto"
+    "topleft toprightt"
+    "header header"
+    "toplefto topright"
+    "topleftt topright";
+}
+
+.topleft {
+  grid-area: topleft;
+}
+.topright {
+  grid-area: topright;
+}
+.header {
+  grid-area: header;
+}
+.tro {
+  grid-area: toprighto;
+}
+.trt {
+  grid-area: toprightt;
+}
+.tlo {
+  grid-area: toplefto;
+}
+.tlt {
+  grid-area: topleftt;
+}
+
+/* Flex alignment */
+.justify-start {
+  justify-content: start;
+}
+.justify-end {
+  justify-content: end;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-evenly {
+  justify-content: space-evenly;
+}
+.items-center {
+  align-items: center;
+}
+.items-start {
+  align-items: start;
+}
+.items-end {
+  align-items: end;
+}
+
+/* Text alignment */
+.text-center {
+  text-align: center;
+}
+.text-start {
+  text-align: start;
+}
+.text-end {
+  text-align: end;
+}
+.text-justify {
+  text-align: justify;
+}
+
+/* Position */
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.sticky {
+  position: sticky;
+}
+
+/* Sizing */
+.w-full {
+  width: -moz-available;
+}
+.w-auto {
+  width: auto;
+}
+.w-quarter {
+  width: 75%;
+}
+.w-half {
+  width: 50%;
+}
+.h-full {
+  height: 100%;
+}
+
+/* Spacing */
+.p-0 {
+  padding: 0;
+}
+.gap-auto {
+  gap: calc(1.7 * var(--inner-padding));
+}

@@ -1,0 +1,61 @@
+main {
+  height: 100vh;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1em;
+}
+
+form {
+  height: 100%;
+
+  a {
+    color: black;
+    font-family: "Bebas";
+
+    span {
+      font-size: 0.9em;
+      font-family: "Bebas";
+    }
+  }
+
+  a:hover {
+    color: black;
+  }
+}
+
+input,
+button {
+  font-family: "Bebas";
+  font-size: 1em;
+  padding: 1.5em;
+  border-radius: var(--base-radius);
+  background-color: #efefef;
+  border: none;
+}
+
+button {
+  background-color: var(--primary);
+  color: var(--text-light);
+}
+
+select {
+  font-family: "Bebas";
+  font-size: 1.4em;
+  background-color: #efefef;
+  padding: 1.4em;
+  border-radius: var(--base-radius);
+  border: none;
+}
+
+.encase {
+  background-color: #efefef;
+  padding: 1.5em;
+  font-family: "Bebas";
+  font-size: 1.4em;
+  border-radius: var(--base-radius);
+  border: none;
+  text-align: start;
+}

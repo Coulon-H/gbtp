@@ -1,0 +1,66 @@
+#forums-list {}
+
+#forum-card {
+  background-color: var(--primary);
+  color: var(--text-light);
+
+  .card-footer {
+    padding: 1em 0;
+  }
+}
+
+.ribbon-container {
+  position: absolute;
+  top: 10%;
+  right: -50px;
+  transform: rotate(45deg);
+  z-index: 10;
+  overflow: hidden;
+  width: 200px;
+  transition: all 0.3s ease;
+}
+
+.banner-ribbon {
+  width: 100%;
+  height: 50px;
+  padding: 2%;
+  background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 1px;
+  box-shadow: 0 5px 15px rgba(255, 75, 43, 0.4);
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.banner-ribbon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg,
+      rgba(255, 255, 255, 0.2) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.2) 75%,
+      transparent 75%,
+      transparent);
+  background-size: 10px 10px;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    transform 0.5s ease;
+}
+
+/*.banner-ribbon:hover::before {
+  opacity: 1;
+  animation: stripe-animation 10s linear infinite;
+}*/

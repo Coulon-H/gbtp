@@ -1,0 +1,111 @@
+meter {
+  background: #efefef;
+  border: none;
+  width: 100%;
+  height: 0.8em;
+  border-radius: 1em;
+  padding: 0.3em;
+}
+
+meter::-webkit-meter-bar {
+  background: var(--primary);
+}
+
+*::-moz-meter-bar {
+  background: var(--primary);
+  height: 100%;
+  border-radius: 1em;
+}
+
+button {
+  padding: var(--inner-padding);
+  width: 100%;
+  background-color: var(--primary);
+  color: var(--text-light);
+  border-radius: var(--base-radius);
+  font-family: "Bebas";
+  font-size: calc(1.3 * var(--inner-padding));
+}
+
+#detail-banner {
+  padding: 2em 4em;
+  width: auto;
+}
+
+section {
+  padding: 0;
+}
+
+#detail-showup {
+  height: 27em;
+  gap: 0.2em;
+
+  img {
+    object-fit: fill;
+  }
+}
+
+#tab-side {
+  #tabs {
+    top: 0;
+    z-index: 5;
+    gap: 1em;
+    padding: 2em 1em 0;
+    border-bottom: 1px solid #dfdfdf;
+    background: #ffffff;
+    overflow: scroll;
+    overflow-x: scroll;
+
+    .tab {
+      color: var(--text);
+      padding: 1em 0.6em;
+    }
+
+    .tab.active {
+      border-bottom: 5px solid var(--primary);
+      background-color: transparent;
+      letter-spacing: 0.09em;
+    }
+
+    .tab:hover {
+      border-bottom: 5px solid var(--primary);
+    }
+  }
+}
+
+section {
+  .card {
+    width: 100%;
+  }
+}
+
+#detail-tab {
+  width: 100%;
+
+  p {
+    width: 100%;
+  }
+}
+
+#card-detail {
+  width: auto;
+  padding: 1.5em 1.2em;
+  top: 3%;
+
+  .card-body,
+  .card-footer,
+  .card-header {
+    width: 98%;
+  }
+
+  .card-body {
+    .box {
+      h6 {
+        font-size: calc(1.5 * var(--inner-padding));
+      }
+
+      gap: 0.8em;
+      margin: 0.8em 0;
+    }
+  }
+}

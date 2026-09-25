@@ -1,0 +1,235 @@
+video {
+  width: 100%;
+  height: 100%;
+}
+
+header {
+  padding: 0;
+  height: 82vh;
+}
+
+.carousel {
+  display: flex;
+  width: 100%;
+  height: 50vh;
+  padding: 5em 0;
+  gap: 0.8em;
+  position: relative;
+}
+
+.card {
+  position: absolute;
+  .card-body {
+    padding: 0;
+  }
+  .card-side {
+    display: none;
+  }
+  .title {
+    font-size: 2.2em;
+  }
+
+  .subtitle {
+    font-size: 1.8em;
+  }
+  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:nth-child(odd) {
+  transform: rotateZ(-7deg);
+}
+.card:nth-child(even) {
+  transform: rotateZ(7deg);
+}
+
+.card:hover {
+  transform: rotateZ(0);
+  flex-direction: row;
+  gap: 1em;
+
+  /*.card-side {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1.5em;
+    .subtitle {
+      text-align: justify;
+    }
+  }*/
+}
+
+#who,
+#album,
+#contact {
+  height: 75vh;
+}
+
+.album {
+  width: 100%;
+  height: 75vh;
+  display: flex;
+
+  .first {
+    background-color: black;
+  }
+
+  .page {
+    width: 35%;
+    height: 100%;
+    right: 15%;
+
+    .front,
+    .back {
+      backface-visibility: hidden;
+      width: 100%;
+      height: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .back {
+      background-color: black;
+      transform: rotateY(180deg);
+    }
+  }
+
+  .page:hover {
+    transform-origin: left;
+    transform-style: preserve-3d;
+    transform: rotate3d(0, 1, 0, 180deg);
+    transition: all 3.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+form {
+  width: max-content;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  * {
+    font-family: "Tanker";
+    padding: 1.5em 1em;
+    font-size: 1.2em;
+  }
+
+  input {
+    width: 33%;
+  }
+
+  textarea {
+  }
+
+  button {
+    font-size: 1.4em;
+  }
+}
+
+.social-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.social-links li {
+  border: 1px solid white;
+  text-align: center;
+  padding: 0.7em;
+  width: 35px;
+  transition: all 0.5s ease-in-out;
+}
+
+.social-links a svg {
+  width: 30px;
+  height: 30px;
+  fill: black;
+}
+
+.white {
+  fill: black;
+}
+
+.social-links li:hover svg {
+  width: 30px;
+  height: 30px;
+  fill: white;
+}
+
+.visible {
+  display: none;
+}
+
+.social-links li:hover .visible {
+  display: inline-block;
+}
+
+.social-links li:hover .unvisible {
+  display: none;
+}
+
+.social-links li:nth-child(1):hover {
+  background-color: #3a589b;
+  scale: 1.3;
+}
+
+.social-links li:nth-child(2):hover {
+  background: linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  scale: 1.3;
+}
+
+.social-links li:nth-child(3):hover {
+  background-color: #010409;
+  scale: 1.3;
+}
+
+.album {
+  height: 70vh;
+
+  .category {
+    width: 30%;
+
+    .box-img {
+      width: 75%;
+      height: fit-content;
+      img {
+        border-radius: 0;
+      }
+    }
+
+    .title,
+    .subtitle {
+      padding: 0.5em;
+      right: 10%;
+      background-color: black;
+      color: white;
+      width: 30%;
+      height: 10%;
+      text-align: center;
+      font-size: 1.4em;
+    }
+    .title {
+      top: 0;
+    }
+    .subtitle {
+      bottom: 9.6%;
+    }
+  }
+
+  .category:nth-child(1) {
+    top: -5%;
+  }
+
+  .category:nth-child(2) {
+    top: 12%;
+  }
+}

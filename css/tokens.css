@@ -1,0 +1,33 @@
+/* ==========================================================================
+   TOKENS
+   Design values only. No selectors that render anything live here —
+   if you're about to write a color, a size, or a timing value more than
+   once, it belongs in this file instead.
+   ========================================================================== */
+
+:root {
+  /* Color */
+  --primary: #eda909;
+  --secondary: #fc9700;
+  --ternary: #a43951;
+  --text: #050315;
+  --text-light: #ffffff;
+
+  /* Spacing / radius */
+  --inner-padding: 1em;
+  --base-radius: 0.2em;
+  --auto-width: 20%;
+
+  /* Layout */
+  --nav-height: 5.5em;
+
+  /* Motion
+     One shared easing curve and a small scale of durations so every
+     animation in the site reads as the same hand, not a grab-bag. */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 0.3s;
+  --duration-base: 0.5s;
+  --duration-slow: 0.9s;
+  --reveal-distance: 28px;
+}

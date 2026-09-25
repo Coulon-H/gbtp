@@ -1,0 +1,88 @@
+/* ==========================================================================
+   BASE
+   The reset proper: fonts, the document root, and bare-element defaults.
+   Nothing here is a utility class and nothing here is a :hover/:focus
+   state — those live in animations.css so this file stays purely
+   "what an element looks like at rest."
+   ========================================================================== */
+
+@font-face {
+  font-family: "Goma";
+  src: url("../fonts/gomarice_goma_octagon.ttf") format("opentype");
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  box-sizing: border-box;
+  text-align: center;
+  scroll-behavior: smooth;
+}
+
+/* Anything with an id can be a scroll target (nav links, in-page CTAs).
+   This keeps a fixed nav from covering the top of the section it jumped to,
+   which is what actually makes a smooth scroll feel smooth. */
+[id] {
+  scroll-margin-top: var(--nav-height);
+}
+
+hr {
+  border: none;
+  border-radius: var(--base-radius);
+  background-color: #e2e2e2;
+  padding: calc(0.1 * var(--inner-padding));
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 0.2em;
+
+  li {
+    padding: 0.1 * var(--inner-padding);
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Goma";
+  margin: 0;
+  font-size: calc(3 * var(--inner-padding));
+}
+
+span,
+p,
+blockquote {
+  font-family: "Goma";
+  font-size: 1.4em;
+  line-height: 1.3em;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  font-family: "Goma";
+  text-decoration: none;
+  color: var(--text);
+  margin: 0;
+  display: inline-block;
+  font-size: 0.6em;
+}
+
+button {
+  border: none;
+  font-family: "Goma";
+}
+
+section {
+  padding: calc(2.1 * var(--inner-padding)) 0;
+}

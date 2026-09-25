@@ -1,0 +1,298 @@
+/* ==========================================================================
+   RESPONSIVE
+   Mobile/tablet overrides only. Nothing here defines a new component —
+   it resizes, restacks or (for the nav) repositions markup that already
+   exists in components.css. Imported last so equal-specificity rules
+   here win on source order; a couple of rules still fight inline styles
+   left on two elements (the hero CTA's width, one section's padding)
+   and need !important — each one says why.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. Fluid spacing scale
+   Nearly every padding, gap and heading size in the site is a calc() of
+   --inner-padding, so scaling that one token down scales the whole page
+   proportionally instead of hunting down every rule that uses it.
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  :root {
+    --inner-padding: 0.7em;
+    --nav-height: 4.6em;
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --inner-padding: 0.5em;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   1. Nav → hamburger overlay under 900px
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  h2.title {
+    font-size: 2.5em;
+  }
+
+  h3.title {
+    font-size: 1.8em;
+  }
+
+  h4.title + p,
+  h3.title + p,
+  h2.title + p {
+    font-size: 0.9em;
+  }
+  h4.title + p + p {
+    font-size: 0.9em;
+  }
+  nav {
+    padding: calc(0.6 * var(--inner-padding)) calc(1.5 * var(--inner-padding));
+    font-size: 1.3em;
+  }
+
+  nav h1 {
+    font-size: 1.5em;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  nav ul,
+  nav a.cta {
+    display: none;
+  }
+
+  nav.is-open ul,
+  nav.is-open a.cta {
+    display: flex;
+  }
+
+  nav.is-open ul {
+    position: fixed;
+    inset: var(--nav-height) 0 0 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.2em;
+    background: #ffffff;
+    z-index: 9;
+    padding: 2em;
+    margin: 0;
+  }
+
+  nav.is-open ul li {
+    width: 100%;
+    text-align: center;
+  }
+
+  nav.is-open ul li a {
+    font-size: 1.3em;
+    padding: 0.8em;
+  }
+
+  nav.is-open a.cta {
+    position: fixed;
+    left: 1.5em;
+    right: 1.5em;
+    bottom: 1.5em;
+    width: auto;
+    font-size: 1em !important;
+    z-index: 10;
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Utility-class collapses
+   The layout is built almost entirely from .w-half / .w-quarter / .box /
+   .card, so overriding those few classes restacks most sections at once.
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .w-quarter,
+  .w-half {
+    width: 100%;
+  }
+
+  .box {
+    flex-wrap: wrap;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .spacer {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Hero
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  header {
+    height: auto;
+    min-height: 100vh;
+    padding-top: calc(var(--nav-height) + var(--inner-padding));
+    padding-bottom: calc(2 * var(--inner-padding));
+  }
+
+  header .box.h-full {
+    flex-direction: column;
+    height: auto;
+  }
+
+  header .box.h-full > .col:last-child {
+    display: none; /* empty decorative column */
+  }
+
+  header .box.gap-auto {
+    row-gap: 1.2em;
+  }
+
+  header a.cta {
+    width: 60% !important; /* inline width:20% on this element */
+  }
+}
+
+@media (max-width: 560px) {
+  header a.cta {
+    padding: 1em;
+    font-size: 0.9em;
+    width: 80% !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. À propos — image grid + feature list
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  #a-propos > .box {
+    flex-direction: column;
+    padding: calc(3 * var(--inner-padding)) calc(1.5 * var(--inner-padding));
+  }
+
+  #a-propos .grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #a-propos .box-img {
+    height: 14em;
+  }
+
+  #a-propos .box-img img {
+    height: 100%;
+  }
+
+  #a-propos .col.text-end {
+    align-items: center;
+    text-align: center;
+  }
+
+  #a-propos > * {
+    h2.title {
+      font-size: 2em;
+    }
+    p {
+      font-size: 0.9em;
+    }
+  }
+
+  .items-end {
+    align-items: center;
+    a.cta {
+      width: 50%;
+      padding: 1em;
+      font-size: 0.9em;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Nos Projets
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  #projets .box.justify-start,
+  #projets .box.justify-end {
+    flex-direction: column;
+  }
+
+  #projets .box.justify-between {
+    padding: calc(3 * var(--inner-padding)) calc(1.5 * var(--inner-padding)) !important;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+
+  .project-photo {
+    height: 18em;
+  }
+
+  .project-card {
+    height: auto;
+    padding: calc(2.2 * var(--inner-padding)) calc(1.5 * var(--inner-padding));
+    a.cta {
+      width: 50%;
+      padding: 1em;
+      font-size: 0.9em;
+    }
+    p {
+      font-size: 0.9em;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Contact
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  #contact .box.justify-center {
+    flex-direction: column;
+  }
+
+  .contact-card {
+    height: auto;
+  }
+
+  form input,
+  form textarea,
+  form button {
+    padding: 1.2em;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Footer
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  footer {
+    padding: calc(3 * var(--inner-padding)) 0;
+  }
+
+  footer .box.justify-between {
+    flex-direction: column;
+    gap: 1.4em;
+    text-align: center;
+  }
+
+  footer ul.gap-auto {
+    padding: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. Premium chrome at small sizes
+   -------------------------------------------------------------------------- */
+@media (max-width: 560px) {
+  .page-transition {
+    font-size: 1.2em;
+    letter-spacing: 0.2em;
+  }
+}

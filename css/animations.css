@@ -1,0 +1,465 @@
+/* ==========================================================================
+   ANIMATIONS & INTERACTIONS
+   Every transition, keyframe, hover/focus/active state, and scroll-reveal
+   rule in the site lives here — nowhere else. If it moves, it's in this
+   file. Kept last in the import order so it can safely layer motion on
+   top of the components.css rest-states without fighting specificity.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. Scoped base transition
+   The old reset applied `transition: all .5s` to every element on the
+   page, including ones that never change state — that's what was making
+   window-resize and layout reflow feel sluggish. Scoped instead to the
+   handful of things that actually have a hover/focus/open state.
+   -------------------------------------------------------------------------- */
+a,
+button,
+.cta,
+.badge,
+.box-img img,
+nav li a,
+form input,
+form textarea,
+form button,
+details,
+summary svg {
+  transition:
+    color var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard),
+    letter-spacing var(--duration-base) var(--ease-standard);
+}
+
+details {
+  transition:
+    max-height var(--duration-base) var(--ease-standard),
+    background-color var(--duration-base) var(--ease-standard),
+    color var(--duration-base) var(--ease-standard);
+}
+
+details::details-content {
+  opacity: 0;
+  transition:
+    opacity var(--duration-base) ease,
+    content-visibility var(--duration-base) var(--ease-standard);
+  content-visibility: hidden;
+}
+
+details[open]::details-content {
+  opacity: 1;
+  content-visibility: visible;
+}
+
+details[open] p {
+  animation: fadeIn var(--duration-base) var(--ease-standard) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   1. Mini interactions — small, immediate feedback on user action
+   -------------------------------------------------------------------------- */
+
+a:hover {
+  color: white;
+  letter-spacing: 0.2em;
+}
+
+/* Primary buttons: lift + a fill sweep + a soft cursor-tracked glow.
+   The glow position comes from --mx/--my, set by js/site.js on pointermove. */
+.cta {
+  --mx: 50%;
+  --my: 50%;
+}
+
+.cta::before {
+  color: white;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--ternary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-base) var(--ease-out-soft);
+  z-index: -1;
+}
+
+.cta::after {
+  color: white;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  background: radial-gradient(
+    120px circle at var(--mx) var(--my),
+    rgb(255 255 255 / 0.35),
+    transparent 70%
+  );
+  transition: opacity var(--duration-base) var(--ease-standard);
+  pointer-events: none;
+}
+
+.cta:hover::after,
+.cta:focus-visible::after {
+  opacity: 1;
+}
+
+.cta > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cta {
+  transform: perspective(600px) rotateX(0) rotateY(0) translateY(0);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  color: white;
+  transform: perspective(600px) rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg)) translateY(-2px);
+  box-shadow: 0 14px 28px -12px rgb(0 0 0 / 0.4);
+}
+
+.cta:hover::before,
+.cta:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.cta:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: none;
+}
+
+.badge:hover {
+  background-color: var(--ternary);
+}
+
+.badge:active {
+  transform: scale(0.97);
+}
+
+/* Nav links: animated underline instead of an instant background swap */
+nav li a {
+  position: relative;
+}
+
+nav li a::after {
+  content: "";
+  position: absolute;
+  left: 0.5em;
+  right: 0.5em;
+  bottom: 0.35em;
+  height: 2px;
+  background-color: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-base) var(--ease-out-soft);
+}
+
+nav li a:hover,
+nav li a:focus-visible {
+  color: var(--text);
+}
+
+nav li a:hover::after,
+nav li a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+nav li a.active::after {
+  display: none;
+}
+
+nav li a.active:hover {
+  color: var(--text);
+}
+
+/* Cards: a quiet image zoom + a cursor-tracked 3D tilt (premium, subtle) */
+.box-img {
+  isolation: isolate;
+}
+
+.box-img img {
+  transform: scale(1);
+}
+
+.box-img:hover img {
+  transform: scale(1.05);
+}
+
+.card {
+  transition:
+    box-shadow var(--duration-base) var(--ease-standard),
+    transform var(--duration-base) var(--ease-standard);
+  transform: perspective(1000px) rotateX(0) rotateY(0);
+  will-change: transform;
+}
+
+.card:hover {
+  box-shadow: 8px 12px 28px -6px rgb(0 0 0 / 0.15);
+}
+
+[data-tilt]:hover {
+  transform: perspective(1000px) rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg));
+}
+
+/* Form fields: a real focus state instead of the static grey border */
+form input,
+form textarea {
+  border-color: #efefef;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgb(162 77 145 / 0.15);
+}
+
+form button {
+  cursor: pointer;
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+form button:hover {
+  background-color: var(--ternary);
+  border-color: var(--ternary);
+}
+
+form button:active {
+  transform: scale(0.98);
+}
+
+/* Accordion arrow */
+details[open] summary svg {
+  transform: rotate(90deg);
+  color: white;
+}
+
+/* --------------------------------------------------------------------------
+   2. Hero — one orchestrated load-in, not a scroll trigger, since it's
+   the first thing a visitor sees with nothing to scroll past yet.
+   -------------------------------------------------------------------------- */
+
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(var(--reveal-distance));
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+[data-hero] {
+  opacity: 0;
+  animation: heroReveal var(--duration-slow) var(--ease-out-soft) forwards;
+  animation-delay: calc(var(--stagger-index, 0) * 0.12s + 0.6s);
+}
+
+/* Header background gets a slow, barely-there drift as you scroll —
+   depth without ever feeling like a "parallax site" gimmick. */
+header {
+  --header-parallax: 0px;
+  background-position: center calc(50% + var(--header-parallax));
+}
+
+/* --------------------------------------------------------------------------
+   3. Scroll reveal — one entrance language, reused everywhere, triggered
+   by the [data-animate] / .in-view pair that js/site.js toggles via
+   IntersectionObserver. Three variants share the same duration/easing
+   so the site still reads as one motion system, not a new effect per
+   section.
+   -------------------------------------------------------------------------- */
+
+[data-animate] {
+  transition:
+    opacity var(--duration-slow) var(--ease-out-soft),
+    transform var(--duration-slow) var(--ease-out-soft),
+    filter var(--duration-slow) var(--ease-out-soft),
+    clip-path var(--duration-slow) var(--ease-out-soft);
+  transition-delay: calc(var(--stagger-index, 0) * 0.09s);
+}
+
+/* Default: fade + gentle rise + a whisper of blur resolving into focus */
+[data-animate="fade"],
+[data-animate=""] {
+  opacity: 0;
+  filter: blur(4px);
+  transform: translateY(var(--reveal-distance));
+}
+
+/* Photos: a curtain wipe instead of a fade, so the grid of project
+   images reveals itself the way a portfolio site would, not a blog */
+[data-animate="wipe"] {
+  clip-path: inset(0 0 100% 0);
+  transform: scale(1.06);
+}
+
+[data-animate="wipe"].in-view {
+  clip-path: inset(0 0 0% 0);
+  transform: scale(1);
+}
+
+/* Cards: a touch of scale alongside the rise */
+[data-animate="scale"] {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance)) scale(0.96);
+}
+
+[data-animate="scale"].in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+[data-animate].in-view {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   4. Premium chrome — scroll progress bar + first-load curtain
+   -------------------------------------------------------------------------- */
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  transform: scaleX(var(--scroll-progress, 0));
+  transform-origin: left;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  z-index: 100;
+  transition: transform 0.15s linear;
+}
+
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--text);
+  color: var(--text-light);
+  font-family: "Goma";
+  font-size: 1.6em;
+  letter-spacing: 0.3em;
+}
+
+.page-transition span {
+  opacity: 0;
+  animation: curtainMark 0.6s var(--ease-out-soft) forwards 0.15s;
+}
+
+@keyframes curtainMark {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition.is-leaving {
+  animation: curtainLeave var(--duration-slow) var(--ease-standard) forwards
+    0.35s;
+  pointer-events: none;
+}
+
+@keyframes curtainLeave {
+  from {
+    clip-path: inset(0 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+/* Stat numbers: quiet gradient fill instead of flat color — the one
+   place on the page allowed a little shimmer, since it's the one
+   place doing a counting trick worth noticing */
+header .title {
+  background: linear-gradient(
+    100deg,
+    var(--text-light) 40%,
+    var(--secondary) 120%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   5. Accessibility — motion is off for anyone who's asked for that
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-animate],
+  [data-hero] {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    clip-path: none;
+  }
+
+  header {
+    --header-parallax: 0px !important;
+  }
+
+  .box-img:hover img,
+  .cta:hover,
+  .cta:active,
+  .badge:active,
+  form button:active,
+  .card,
+  [data-tilt]:hover {
+    transform: none;
+  }
+
+  .page-transition {
+    display: none;
+  }
+}
+
+/* Keep focus visible for keyboard users everywhere motion touches */
+a:focus-visible,
+button:focus-visible,
+.cta:focus-visible,
+.badge:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+}

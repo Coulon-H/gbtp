@@ -1,0 +1,321 @@
+/* ==========================================================================
+   COMPONENTS
+   Named, reusable pieces of UI. Each block owns one component's shape,
+   color and sizing at rest. Hover/focus/open states and anything that
+   moves live in animations.css, layered on top of these.
+   ========================================================================== */
+
+nav {
+  width: -moz-available;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(0.4 * var(--inner-padding)) calc(3 * var(--inner-padding));
+  overflow: hidden;
+  color: var(--text);
+  font-size: 1.7em;
+
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.21);
+  backdrop-filter: blur(8.4px);
+  -webkit-backdrop-filter: blur(8.4px);
+
+  ul {
+    width: auto;
+    gap: calc(1.5 * var(--inner-padding));
+
+    li {
+      position: relative;
+
+      a {
+        display: block;
+        width: 100%;
+        color: var(--text);
+        font-size: 1em;
+        padding: 0.5em;
+        border-radius: var(--base-radius);
+      }
+
+      a.active {
+        background-color: var(--primary);
+        color: white;
+      }
+    }
+  }
+}
+
+header {
+  position: relative;
+  height: 100vh;
+  padding: var(--inner-padding) calc(3 * var(--inner-padding));
+  background-image: url(../img/g0.v1.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.head-background {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.78) 0%,
+    rgba(0, 0, 0, 0.35) 55%,
+    rgba(0, 0, 0, 0) 89%
+  );
+  z-index: 1;
+}
+
+header > * {
+  position: relative;
+  z-index: 2;
+}
+
+footer {
+  background-color: #efefef;
+  padding: 6em 0;
+  color: var(--text);
+
+  h1,
+  h3,
+  h5 {
+    font-size: 2em;
+  }
+
+  a,
+  p {
+    font-size: 1.5em;
+  }
+
+  #FAQ.col {
+    width: 93%;
+  }
+
+  #newsletter {
+    width: 80%;
+    padding: calc(1.5 * var(--inner-padding));
+    color: black;
+    box-shadow: none;
+    gap: 1em;
+
+    .cta {
+      width: 30%;
+      font-size: 1.2em;
+    }
+  }
+
+  #heading {
+    box {
+      col {
+        width: 50%;
+      }
+    }
+  }
+
+  #infos {
+    h5 {
+      font-size: 1.8em;
+    }
+
+    ul {
+      padding-left: 0;
+      width: 100%;
+
+      a {
+        font-size: 0.9em;
+        font-family: "Montserrat";
+      }
+    }
+  }
+
+  #copyright {
+    padding: 0 2em;
+
+    p {
+      font-size: 0.9em;
+    }
+
+    ul {
+      padding-left: 0;
+    }
+  }
+}
+
+form {
+  font-family: "Goma";
+  width: -moz-available;
+  padding: 0 var(--inner-padding);
+
+  input,
+  textarea,
+  button {
+    font-family: "Goma";
+    width: -moz-available;
+    border-radius: var(--inner-padding);
+    border: 1px solid #efefef;
+    margin: var(--inner-padding) 0;
+    padding: 2em;
+  }
+}
+
+.title {
+  font-size: calc(3 * var(--inner-padding));
+  font-weight: bold;
+}
+
+.highlight {
+  color: var(--primary);
+  font-weight: bolder;
+  font-size: 1.3em;
+}
+
+.span-title {
+  padding: calc(0.8 * var(--inner-padding));
+  width: 30%;
+  backdrop-filter: blur(1.5em);
+  -webkit-backdrop-filter: blur(1.5em);
+  color: black;
+  border-radius: var(--base-radius);
+}
+
+.box-img {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  border-radius: var(--base-radius);
+
+  img {
+    display: block;
+    width: 100%;
+    height: 85%;
+    object-fit: cover;
+    border-radius: var(--base-radius);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 27%;
+  height: fit-content;
+  gap: 1.2em;
+  padding: 1em;
+  box-shadow: 5px 5px 15px #efefef;
+  border-radius: var(--inner-padding);
+
+  .box-img {
+    width: 80%;
+    height: auto;
+    border-radius: calc(1 * var(--inner-padding));
+
+    img {
+      border-radius: var(--inner-padding);
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  ul {
+    padding: 0;
+  }
+}
+
+.sets {
+  height: 40em;
+}
+
+.cta {
+  padding: var(--inner-padding) 0;
+  background-color: var(--primary);
+  border-radius: var(--base-radius);
+  color: white;
+  width: calc(0.8 * var(--auto-width));
+  text-align: center;
+  font-size: calc(1.1 * var(--inner-padding));
+  position: relative;
+  overflow: hidden;
+}
+
+a#primary {
+  background-color: var(--primary);
+  border-radius: calc(0.5 * var(--inner-padding));
+  padding: calc(0.7 * var(--inner-padding));
+  font-size: var(--inner-padding);
+}
+
+.badge {
+  background-color: var(--primary);
+  color: white;
+  padding: calc(0.8 * var(--inner-padding)) 3.5em;
+  border-radius: var(--base-radius);
+  cursor: pointer;
+}
+
+.active {
+  background-color: var(--ternary);
+  color: white;
+}
+
+/* Disclosure / accordion */
+details {
+  position: relative;
+  background-color: white;
+  padding: calc(1.4 * var(--inner-padding)) 0.7em;
+  box-shadow: 5px 5px 15px #efefef;
+  border-radius: var(--base-radius);
+  max-height: 3em;
+  overflow: hidden;
+  width: 100%;
+
+  p {
+    font-size: 1em;
+    opacity: 0;
+  }
+
+  h3 {
+    font-size: 1.7em;
+  }
+}
+
+details[open] {
+  background-color: var(--primary);
+  max-height: 7em;
+  color: white;
+}
+
+details[open] p {
+  padding: 1em 0;
+}
+
+summary {
+  list-style: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  svg {
+    width: 3.2em;
+  }
+}
+
+/* Remove default disclosure triangle */
+summary::-webkit-details-marker,
+summary::details-marker {
+  display: none;
+}

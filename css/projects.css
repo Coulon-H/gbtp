@@ -1,0 +1,80 @@
+.paginate {
+  width: auto;
+
+  a {
+    width: 15%;
+  }
+
+  #previous {
+    background-color: #dfdfdf;
+  }
+}
+
+input,
+select {
+  font-family: "Bebas";
+  font-size: 1.1em;
+  border: none;
+  background-color: #dfdfdf;
+  border-radius: var(--base-radius);
+  padding: calc(0.9 * var(--inner-padding));
+}
+
+#projects {
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: white;
+  border-radius: var(--base-radius);
+  width: 28%;
+  height: fit-content;
+  gap: 1em;
+  padding: calc(1 * var(--inner-padding));
+  box-shadow: 5px 5px 15px #efefef;
+
+  .box-img {
+    height: 12em;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .card-body,
+  .card-footer {
+    width: 100%;
+    padding: 0;
+  }
+
+  h3 {
+    font-size: calc(1.7 * var(--inner-padding));
+  }
+
+  p {
+    font-size: calc(1 * var(--inner-padding));
+  }
+
+  .box {
+    padding: 0;
+  }
+
+  hr {
+    background-color: transparent;
+    border-top: 2px dotted #6f6f6f;
+  }
+
+  .highlight {
+    color: var(--primary);
+    margin: 0;
+    font-weight: bolder;
+    font-size: 1.3em;
+  }
+
+  span {
+    font-size: 0.8em;
+    color: #6f6f6f;
+    margin: 0;
+  }
+}
