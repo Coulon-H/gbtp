@@ -21,7 +21,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.4fr 0.4fr;
   grid-template-rows: 0.7fr;
   grid-template-areas:
     "topleft toprighto"
@@ -29,6 +29,10 @@
     "header header"
     "toplefto topright"
     "topleftt topright";
+
+    .box-img{
+      height:30em;
+    }
 }
 
 .topleft {
