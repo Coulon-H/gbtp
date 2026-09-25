@@ -15,12 +15,12 @@
     "(prefers-reduced-motion: reduce)",
   ).matches;
 
-  function prefersReducedMotion() {
+  /*function prefersReducedMotion() {
     return (
       window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     );
-  }
+  }*/
 
   function canHover() {
     return window.matchMedia && window.matchMedia("(pointer: fine)").matches;
@@ -128,6 +128,7 @@
     if (ticking) return;
     ticking = true;
     window.requestAnimationFrame(function () {
+      var root = document.documentElement;
       var scrollTop = window.scrollY || root.scrollTop;
       var docHeight = root.scrollHeight - window.innerHeight;
       var progress = docHeight > 0 ? scrollTop / docHeight : 0;
@@ -156,7 +157,7 @@
   /* ---- First-load curtain ---- */
   var curtain = document.querySelector(".page-transition");
   if (curtain) {
-    if (reduceMotion) {
+    if (prefersReducedMotion) {
       curtain.remove();
     } else {
       window.addEventListener(
@@ -177,7 +178,7 @@
   }
 
   /* ---- Cursor-tracked tilt + glow (desktop pointer only) ---- */
-  if (canHover && !reduceMotion) {
+  if (canHover && !prefersReducedMotion) {
     var tiltTargets = document.querySelectorAll("[data-tilt], .cta");
 
     tiltTargets.forEach(function (el) {
