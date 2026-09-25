@@ -137,7 +137,7 @@
         progressEl.style.setProperty("--scroll-progress", progress.toFixed(4));
       }
 
-      if (header && !reduceMotion) {
+      if (header && !prefersReducedMotion) {
         var vh = window.innerHeight;
         if (scrollTop < vh) {
           var offset = Math.round(scrollTop * 0.08); // subtle, capped by vh
